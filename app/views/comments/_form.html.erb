@@ -1,0 +1,13 @@
+<%= form_for(@comment, remote: true) do |f| %>
+  <% if @comment.errors.any? %>
+   <%= render 'errors'%>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+    <%= f.hidden_field :article_id, value: @article.id %>
+  <div class="actions">
+    <%= f.submit "Add comment", class: "btn btn-primary" %>
+  </div>
+<% end %>

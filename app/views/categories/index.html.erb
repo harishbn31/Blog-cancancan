@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-8">
+    <div class="page-header">
+    <h1>Listing Categories</h1>      
+    </div>
 
-<h1>Listing Categories</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,21 +15,33 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
-        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to category.name, category %></td>
         <% if can? :update, category %>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to edit_category_path(category), class: 'btn btn-primary' do %>
+            <i class="glyphicon glyphicon-pencil">Edit</i>
+          <%end%></td>
         <%end%>
         <%if can? :destroy, category %>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' do %>
+            <i class="glyphicon glyphicon-trash">Delete</i>
+            <%end%>
+           </td>
         <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
+    
+  </div>
+  <div class="col-md-4">
+    <div class="page-header">
+    <h1>Trending Articles</h1>
+    </div>
+  </div>
+</div>
 <% if can? :create, Category.new %>
-      <%= link_to 'New Category', new_category_path %>
-    <% end %>
+  <%= link_to new_category_path, class: 'btn btn-primary' do %>
+      <i class="glyphicon glyphicon-plus">Add Category</i>
+  <%end%>
+<% end %>

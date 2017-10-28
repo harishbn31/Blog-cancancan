@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   
+  resources :comments
+  namespace :api do
+  namespace :v1, fomat: 'json' do
+    resources :articles
+    end
+  end
+
   resources :articles
   resources :categories
   resources :roles
